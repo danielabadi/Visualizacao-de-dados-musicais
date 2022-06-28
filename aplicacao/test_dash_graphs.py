@@ -7,23 +7,58 @@ import mapa
 import distribuicoes
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.layout = html.Div(children=[
-    html.Div([
+app.layout = dbc.Container(children=[
+    dbc.Row([
         html.H1("Distribuições das características das músicas", style={'text-align': 'center'}),
-        html.Div([
-            dcc.Graph(id='caracteristicas1', figure=distribuicoes.charts[0])
+        dbc.Row([
+            dbc.Col([
+                dcc.Graph(id='caracteristicas1', figure=distribuicoes.charts[0])
+            ]),
+            dbc.Col([
+                dcc.Graph(id='caracteristicas2', figure=distribuicoes.charts[1])
+            ])
         ]),
-        html.Div([
-            dcc.Graph(id='caracteristicas2', figure=distribuicoes.charts[1])
-        ])
+        dbc.Row([
+            dbc.Col([
+                dcc.Graph(id='caracteristicas3', figure=distribuicoes.charts[2])
+            ]),
+            dbc.Col([
+                dcc.Graph(id='caracteristicas4', figure=distribuicoes.charts[3])
+            ])
+        ]),
+        dbc.Row([
+            dbc.Col([
+                dcc.Graph(id='caracteristicas5', figure=distribuicoes.charts[4])
+            ]),
+            dbc.Col([
+                dcc.Graph(id='caracteristicas6', figure=distribuicoes.charts[5])
+            ])
+        ]),
+        dbc.Row([
+            dbc.Col([
+                dcc.Graph(id='caracteristicas7', figure=distribuicoes.charts[6])
+            ]),
+            dbc.Col([
+                dcc.Graph(id='caracteristicas8', figure=distribuicoes.charts[7])
+            ])
+        ]),
+        dbc.Row([
+            dbc.Col([
+                dcc.Graph(id='caracteristicas9', figure=distribuicoes.charts[8])
+            ]),
+            dbc.Col([
+                dcc.Graph(id='caracteristicas10', figure=distribuicoes.charts[9])
+            ])
+        ]),
+
 
     ]),
-    html.Div([
+    dbc.Row([
             html.H1("Distribuições temporais do lançamento das músicas", style={'text-align': 'center'}),
 
             dcc.Graph(id='datas_lancamentos', figure=datas_lancamentos.fig)
     ]),
-    html.Div([
+    dbc.Row([
         html.H1("Distribuição de artistas pelo mundo", style={'text-align': 'center'}),
 
         dcc.Graph(id='mapa', figure=mapa.fig)

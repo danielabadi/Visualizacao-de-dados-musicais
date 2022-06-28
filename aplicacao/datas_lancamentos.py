@@ -1,10 +1,8 @@
-import imports_datasets as datasets
-import pandas as pd
-import plotly.express as px
+import imports_datasets as imports
 
-df_mix = datasets.df_songfeatures_acoustic_features.set_index('song_id').join(datasets.df_metadata_songs.set_index('song_id'), how='inner')
-df_mix2 = df_mix.join(datasets.df_metadata_tracks.set_index('song_id'), how='inner')
-df_mix2['release_date'] = pd.to_datetime(df_mix2['release_date'])
+df_mix = imports.df_songfeatures_acoustic_features.set_index('song_id').join(imports.df_metadata_songs.set_index('song_id'), how='inner')
+df_mix2 = df_mix.join(imports.df_metadata_tracks.set_index('song_id'), how='inner')
+df_mix2['release_date'] = imports.pd.to_datetime(df_mix2['release_date'])
 df_mix2['year'] = df_mix2['release_date'].dt.year
 df_mix2['month'] = df_mix2['release_date'].dt.month
 df_mix2['day'] = df_mix2['release_date'].dt.day
@@ -27,6 +25,6 @@ for i in range(1, 13):
   lista.append(mes)
 
   lista[0][0] = 0
-fig = px.imshow(lista,x=list(range(1, 32)), y=['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 
+fig = imports.px.imshow(lista,x=list(range(1, 32)), y=['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 
                                                'Agosto','Setembro', 'Outubro', 'Novembro','Dezembro'], 
                 labels=dict(color='Número de<br>músicas'), )

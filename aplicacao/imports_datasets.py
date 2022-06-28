@@ -26,3 +26,11 @@ data = json.loads(f.read())
 
 df_countries = pd.read_csv('../artist_country.csv')
 df_countries = df_countries.set_index('name').join(df_metadata_artists.set_index('name'), how='inner')
+
+df_mix = df_songfeatures_acoustic_features.set_index('song_id').join(df_metadata_songs.set_index('song_id'), how='inner')
+df_mix2 = df_mix.join(df_metadata_tracks.set_index('song_id'), how='inner')
+df_mix2['release_date'] = pd.to_datetime(df_mix2['release_date'])
+df_mix2['year'] = df_mix2['release_date'].dt.year
+df_mix2['month'] = df_mix2['release_date'].dt.month
+df_mix2['day'] = df_mix2['release_date'].dt.day
+df_mix2['decade'] = df_mix2['year'] - df_mix2['year'] % 10

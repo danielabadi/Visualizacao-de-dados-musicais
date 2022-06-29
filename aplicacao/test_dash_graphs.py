@@ -9,6 +9,16 @@ import correlacao
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(children=[
     dbc.Row([
+        html.H1("Nuvem de palavras dos títulos das músicas", style={'text-align': 'center'}),
+        html.P("AAAAAAAAAAAA"),
+        html.Img(src=app.get_asset_url("titles.png"))
+    ]),
+    dbc.Row([
+        html.H1("Nuvem de palavras das letras das músicas", style={'text-align': 'center'}),
+        html.P("AAAAAAAAAAAA"),
+        html.Img(src=app.get_asset_url("lyrics.png"))
+    ]),
+    dbc.Row([
         html.H1("Distribuições das características das músicas", style={'text-align': 'center'}),
         dbc.Row([
             dbc.Col([
@@ -74,6 +84,21 @@ app.layout = dbc.Container(children=[
             html.H1("Distribuições temporais do lançamento das músicas", style={'text-align': 'center'}),
             html.P("AAAAAAAAAAAA"),
             dcc.Graph(id='datas_lancamentos', figure=datas_lancamentos.fig)
+    ]),
+    dbc.Row([
+            html.H1("Distribuição de semanas que as músicas permanecem na Billboard 100", style={'text-align': 'center'}),
+            html.P("AAAAAAAAAAAA"),
+            dcc.Graph(id='weeks_on_chart', figure=weeks_on_chart.weeks_on_chart)
+    ]),
+    dbc.Row([
+            html.H1("Relação entre o número de semanas que a música permaneceu na Billboard 100, sua posição máxima no ranking e sua popularidade", style={'text-align': 'center'}),
+            html.P("AAAAAAAAAAAA"),
+            dcc.Graph(id='weeks_on_chart_peak_position', figure=weeks_on_chart.weeks_on_chart_peak_position)
+    ]),
+    dbc.Row([
+            html.H1("Atributos médios por popularidade", style={'text-align': 'center'}),
+            html.P("AAAAAAAAAAAA"),
+            dcc.Graph(id='atributos_popularidade', figure=atributos_popularidade.fig)
     ]),
     dbc.Row([
         html.H1("Distribuição de artistas pelo mundo", style={'text-align': 'center'}),

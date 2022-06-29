@@ -3,7 +3,6 @@ import dash_bootstrap_components as dbc
 
 import datas_lancamentos
 import imports_datasets
-import mapa
 import distribuicoes
 import correlacao
 
@@ -79,7 +78,14 @@ app.layout = dbc.Container(children=[
     dbc.Row([
         html.H1("Distribuição de artistas pelo mundo", style={'text-align': 'center'}),
 
-        dcc.Graph(id='mapa', figure=mapa.fig)
+        html.Div(
+            children=[
+                html.Iframe(
+                    src="assets/mapa.html",
+                    style={"width": "100%", "min-height": "640px", "background":"url(assets/loading.gif) center center no-repeat"},
+                )
+            ]
+        )
     ])
 ])
 

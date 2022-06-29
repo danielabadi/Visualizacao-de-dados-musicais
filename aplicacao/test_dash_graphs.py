@@ -2,24 +2,28 @@ from dash import Dash, dcc, html, Input, Output
 import dash_bootstrap_components as dbc
 
 import datas_lancamentos
-import imports_datasets
+import imports_datasets as imports
 import distribuicoes
 import correlacao
+import weeks_on_chart
+import atributos_popularidade
+import radar
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(children=[
     dbc.Row([
-        html.H1("Nuvem de palavras dos títulos das músicas", style={'text-align': 'center'}),
-        html.P("AAAAAAAAAAAA"),
-        html.Img(src=app.get_asset_url("titles.png"))
+        html.H2("Núvens de palavras", style={'text-align': 'center'}),
+        dbc.Col([
+            html.H3("Títulos das músicas", style={'text-align': 'center'}),
+            html.Img(src=app.get_asset_url("titles.png"), style={"width": "100%"}),
+    ]),
+        dbc.Col([
+            html.H3("Letras das músicas", style={'text-align': 'center'}),
+            html.Img(src=app.get_asset_url("lyrics.png"), style={"width": "100%"})
+        ])
     ]),
     dbc.Row([
-        html.H1("Nuvem de palavras das letras das músicas", style={'text-align': 'center'}),
-        html.P("AAAAAAAAAAAA"),
-        html.Img(src=app.get_asset_url("lyrics.png"))
-    ]),
-    dbc.Row([
-        html.H1("Distribuições das características das músicas", style={'text-align': 'center'}),
+        html.H2("Distribuições das características das músicas", style={'text-align': 'center'}),
         dbc.Row([
             dbc.Col([
                 dcc.Graph(id='caracteristicas1', figure=distribuicoes.charts[0])
@@ -62,7 +66,7 @@ app.layout = dbc.Container(children=[
         ]),
     ]),
     dbc.Row([
-        html.H1("Correlações entre atributos musicais", style={'text-align': 'center'}),
+        html.H2("Correlações entre atributos musicais", style={'text-align': 'center'}),
 
         dbc.Row([
                 html.H3("Correlações entre atributos relacionados à expressividade das músicas", style={'text-align': 'center'}),
@@ -81,27 +85,30 @@ app.layout = dbc.Container(children=[
             ])
     ]),
     dbc.Row([
-            html.H1("Distribuições temporais do lançamento das músicas", style={'text-align': 'center'}),
-            html.P("AAAAAAAAAAAA"),
+            html.H2("Distribuições temporais do lançamento das músicas", style={'text-align': 'center'}),
             dcc.Graph(id='datas_lancamentos', figure=datas_lancamentos.fig)
     ]),
     dbc.Row([
-            html.H1("Distribuição de semanas que as músicas permanecem na Billboard 100", style={'text-align': 'center'}),
-            html.P("AAAAAAAAAAAA"),
+            html.H2("Distribuição de semanas que as músicas permanecem na Billboard 100", style={'text-align': 'center'}),
             dcc.Graph(id='weeks_on_chart', figure=weeks_on_chart.weeks_on_chart)
     ]),
     dbc.Row([
-            html.H1("Relação entre o número de semanas que a música permaneceu na Billboard 100, sua posição máxima no ranking e sua popularidade", style={'text-align': 'center'}),
-            html.P("AAAAAAAAAAAA"),
+            html.H2("Relação entre o número de semanas que a música permaneceu na Billboard 100, sua posição máxima no ranking e sua popularidade", style={'text-align': 'center'}),
             dcc.Graph(id='weeks_on_chart_peak_position', figure=weeks_on_chart.weeks_on_chart_peak_position)
     ]),
     dbc.Row([
-            html.H1("Atributos médios por popularidade", style={'text-align': 'center'}),
-            html.P("AAAAAAAAAAAA"),
+            html.H2("Atributos médios por popularidade", style={'text-align': 'center'}),
             dcc.Graph(id='atributos_popularidade', figure=atributos_popularidade.fig)
     ]),
     dbc.Row([
-        html.H1("Distribuição de artistas pelo mundo", style={'text-align': 'center'}),
+        dcc.Dropdown(id='musics',
+            options=imports.df_metadata_songs['song_name'], value = ['thank u, next', 'Sunflower - Spider-Man: Into the Spider-Verse'],
+            multi=True
+        ),
+        dcc.Graph(id='radar', figure=radar.atribute_radar([]))
+    ]),
+    dbc.Row([
+        html.H2("Distribuição de artistas pelo mundo", style={'text-align': 'center'}),
 
         html.Div(
             children=[
@@ -113,6 +120,13 @@ app.layout = dbc.Container(children=[
         )
     ])
 ])
+
+@app.callback(
+    Output("radar", "figure"),
+    Input("musics", "value"),
+)
+def update_radar(value):
+    return radar.atribute_radar(value)
 
 
 if __name__ == '__main__':

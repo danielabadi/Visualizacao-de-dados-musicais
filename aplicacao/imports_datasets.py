@@ -4,6 +4,7 @@ import json
 import pandas as pd
 import plotly.express as px
 import numpy as np
+import plotly.graph_objects as go
 
 df_songfeatures_acoustic_features = pd.read_csv('../musicoset_songfeatures/acoustic_features.csv', sep='\t')
 #df_songfeatures_lyrics = pd.read_csv('../musicoset_songfeatures/lyrics.csv', sep='\t')
@@ -34,3 +35,5 @@ df_mix2['year'] = df_mix2['release_date'].dt.year
 df_mix2['month'] = df_mix2['release_date'].dt.month
 df_mix2['day'] = df_mix2['release_date'].dt.day
 df_mix2['decade'] = df_mix2['year'] - df_mix2['year'] % 10
+
+dataset_radar = df_songfeatures_acoustic_features.set_index('song_id').join(df_metadata_songs.set_index('song_id'))

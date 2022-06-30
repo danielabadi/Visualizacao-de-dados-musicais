@@ -5,6 +5,8 @@ import pandas as pd
 import plotly.express as px
 import numpy as np
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
 
 df_songfeatures_acoustic_features = pd.read_csv('../musicoset_songfeatures/acoustic_features.csv', sep='\t')
 #df_songfeatures_lyrics = pd.read_csv('../musicoset_songfeatures/lyrics.csv', sep='\t')

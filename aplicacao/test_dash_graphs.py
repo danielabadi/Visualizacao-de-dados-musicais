@@ -4,6 +4,7 @@ import dash_bootstrap_components as dbc
 import datas_lancamentos
 import imports_datasets as imports
 import distribuicoes
+import distribuicoes_popularidades
 import correlacao
 import weeks_on_chart
 import atributos_popularidade
@@ -63,6 +64,22 @@ app.layout = dbc.Container(children=[
             dbc.Col([
                 dcc.Graph(id='caracteristicas10', figure=distribuicoes.charts[9])
             ])
+        ]),
+    ]),
+    dbc.Row([
+        html.H2("Distribuição dos álbuns, artistas e músicas populares versus o total", style={'text-align': 'center'}),
+
+        dbc.Row([
+            html.H3("Álbuns", style={'text-align': 'center'}),
+            dcc.Graph(id='albumsPopularidade', figure=distribuicoes_popularidades.charts[0])
+        ]),
+        dbc.Row([
+            html.H3("Artistas", style={'text-align': 'center'}),
+            dcc.Graph(id='artistasPopularidade', figure=distribuicoes_popularidades.charts[1])
+        ]),
+        dbc.Row([
+            html.H3("Músicas", style={'text-align': 'center'}),
+            dcc.Graph(id='musicasPopularidade', figure=distribuicoes_popularidades.charts[2])
         ]),
     ]),
     dbc.Row([

@@ -19,6 +19,7 @@ df_popularity_album_pop = pd.read_csv('../musicoset_popularity/album_pop.csv', s
 df_popularity_album_chart = pd.read_csv('../musicoset_popularity/album_chart.csv', sep='\t')
 
 df_metadata_tracks = pd.read_csv('../musicoset_metadata/tracks.csv', sep='\t')
+df_metadata_genres = pd.read_csv('../musicoset_metadata/genres_plot.csv')
 df_metadata_songs = pd.read_csv('../musicoset_metadata/songs.csv', sep='\t')
 df_metadata_releases = pd.read_csv('../musicoset_metadata/releases.csv', sep='\t')
 df_metadata_artists = pd.read_csv('../musicoset_metadata/artists.csv', sep='\t')

@@ -2,15 +2,15 @@ from dash import Dash, html, dcc, Input, Output, State, no_update
 import dash_bootstrap_components as dbc
 import plotly.express as px
 
-import datas_lancamentos
-import imports_datasets as imports
-import distribuicoes
-import distribuicoes_popularidades
-import correlacao
-import weeks_on_chart
-import atributos_popularidade
-import radar
-import evolucao_generos
+import aplicacao.datas_lancamentos as datas_lancamentos
+import aplicacao.imports_datasets as imports
+import aplicacao.distribuicoes as distribuicoes
+import aplicacao.distribuicoes_popularidades as distribuicoes_popularidades
+import aplicacao.correlacao as correlacao
+import aplicacao.weeks_on_chart as weeks_on_chart
+import aplicacao.atributos_popularidade as atributos_popularidade
+import aplicacao.radar as radar
+import aplicacao.evolucao_generos as evolucao_generos
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 

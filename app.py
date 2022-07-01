@@ -21,11 +21,11 @@ app.layout = dbc.Container(children=[
         html.H2("Núvens de palavras", style={'text-align': 'center'}),
         dbc.Col([
             html.H3("Títulos das músicas", style={'text-align': 'center'}),
-            html.Img(src=app.get_asset_url("titles.png"), style={"width": "100%"}),
+            html.Img(src="aplicacao/assets/titles.png", style={"width": "100%"}),
     ]),
         dbc.Col([
             html.H3("Letras das músicas", style={'text-align': 'center'}),
-            html.Img(src=app.get_asset_url("lyrics.png"), style={"width": "100%"})
+            html.Img(src="aplicacao/assets/lyrics.png", style={"width": "100%"})
         ])
     ]),
     dbc.Row([

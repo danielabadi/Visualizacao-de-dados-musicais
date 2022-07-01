@@ -129,18 +129,18 @@ app.layout = dbc.Container(children=[
         ),
         dcc.Graph(id='radar', figure=radar.atribute_radar([]))
     ]),
-    ##dbc.Row([
-    ##    html.H2("Distribuição de artistas pelo mundo", style={'text-align': 'center'}),
+    dbc.Row([
+        html.H2("Distribuição de artistas pelo mundo", style={'text-align': 'center'}),
 
-    ##    html.Div(
-    ##        children=[
-    ##            html.Iframe(
-    ##                src="aplicacao/assets/mapa.html",
-    ##                style={"width": "100%", "min-height": "640px", "background":"url(aplicacao/assets/loading.gif) center center no-repeat"},
-    ##            )
-    ##        ]
-    ##    )
-    ##]),
+        html.Div(
+            children=[
+                html.Iframe(
+                    src="assets/mapa.html",
+                    style={"width": "100%", "min-height": "640px", "background":"url(assets/loading.gif) center center no-repeat"},
+                )
+            ]
+        )
+    ]),
     dbc.Row([
         html.H2("Evolução do Gêneros", style={'text-align': 'center'}),
         dbc.Col(evolucao_generos.image_card, width=3), dbc.Col(evolucao_generos.graph_card, width=8)

@@ -1,5 +1,6 @@
-from dash import Dash, dcc, html, Input, Output
+from dash import Dash, html, dcc, Input, Output, State, no_update
 import dash_bootstrap_components as dbc
+import plotly.express as px
 
 import datas_lancamentos
 import imports_datasets as imports
@@ -9,6 +10,7 @@ import correlacao
 import weeks_on_chart
 import atributos_popularidade
 import radar
+import evolucao_generos
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.layout = dbc.Container(children=[
@@ -135,7 +137,11 @@ app.layout = dbc.Container(children=[
                 )
             ]
         )
-    ])
+    ]),
+    dbc.Row([
+        html.H2("Evolução do Gêneros", style={'text-align': 'center'}),
+        dbc.Col(evolucao_generos.image_card, width=3), dbc.Col(evolucao_generos.graph_card, width=8)
+    ], justify="around")
 ])
 
 @app.callback(
@@ -144,6 +150,36 @@ app.layout = dbc.Container(children=[
 )
 def update_radar(value):
     return radar.atribute_radar(value)
+
+@app.callback(
+    Output("popover", "is_open"),
+    [Input("popover-bottom-target", "n_clicks")],
+    [State("popover", "is_open")],
+)
+def toggle_popover(n, is_open):
+    if n:
+        return not is_open
+    return is_open
+
+@app.callback(
+    [Output("line_chart", "figure"),
+     Output("the_alert", "children")],
+    [Input("genre_chosen", "value")]
+)
+def update_graph_card(genres):
+    if len(genres) == 0:
+        return no_update, alert
+    else:
+        df_filtered = evolucao_generos.df[evolucao_generos.df["genre"].isin(genres)]
+        df_filtered = df_filtered.groupby(["ano", "genre"])[['num']].sum().reset_index()
+        fig = imports.px.line(df_filtered, x="ano", y="num", color="genre",
+                      labels={"ano": "Year", "num": "# Genres"}).update_traces(mode='lines+markers')
+        return fig, no_update
+
+def toggle_modal(n1, n2, is_open):
+    if n1 or n2:
+        return not is_open
+    return is_open
 
 
 if __name__ == '__main__':

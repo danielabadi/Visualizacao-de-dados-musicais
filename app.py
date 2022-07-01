@@ -136,7 +136,7 @@ app.layout = dbc.Container(children=[
             children=[
                 html.Iframe(
                     src="aplicacao/assets/mapa.html",
-                    style={"width": "100%", "min-height": "640px", "background":"url(assets/loading.gif) center center no-repeat"},
+                    style={"width": "100%", "min-height": "640px", "background":"url(aplicacao/assets/loading.gif) center center no-repeat"},
                 )
             ]
         )

@@ -1,9 +1,7 @@
-import imports_datasets as imports
+import aplicacao.imports_datasets as imports
 
 from dash import Dash, html, dcc, Input, Output, State, no_update
 import dash_bootstrap_components as dbc
-import plotly.express as px
-import pandas as pd
 
 df = imports.df_metadata_genres
 

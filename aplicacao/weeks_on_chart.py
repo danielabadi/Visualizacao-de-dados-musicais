@@ -1,4 +1,4 @@
-import imports_datasets as imports
+import aplicacao.imports_datasets as imports
 
 k = imports.df_popularity_song_chart.groupby("song_id").max().join(imports.df_metadata_songs.set_index("song_id"), how='inner')
 

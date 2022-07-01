@@ -1,4 +1,4 @@
-import imports_datasets as imports
+import aplicacao.imports_datasets as imports
 
 
 x = imports.df_mix2.groupby(['popularity']).mean() # esse mix foi definido na parte das datas de lançamento

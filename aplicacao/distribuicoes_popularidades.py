@@ -1,4 +1,4 @@
-import imports_datasets as imports
+import aplicacao.imports_datasets as imports
 
 artist_pop_by_year = imports.df_popularity_artist_pop.groupby(['year', 'is_pop']).count().reset_index()
 album_pop_by_year =  imports.df_popularity_album_pop.groupby(['year', 'is_pop']).count().reset_index()

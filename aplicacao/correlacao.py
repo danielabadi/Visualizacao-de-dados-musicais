@@ -1,4 +1,4 @@
-import imports_datasets as imports
+import aplicacao.imports_datasets as imports
 
 x_1 = ['valence', 'danceability', 'tempo', 'energy']
 fig_1 = imports.px.scatter_matrix(imports.df_mix2, # esse mix foi definido na parte das datas de lançamento

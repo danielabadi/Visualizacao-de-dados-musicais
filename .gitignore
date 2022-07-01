@@ -4,3 +4,6 @@ aplicacao/__pycache__/datas_lancamentos.cpython-38.pyc
 aplicacao/__pycache__/distribuicoes.cpython-38.pyc
 aplicacao/__pycache__/imports_datasets.cpython-38.pyc
 *.pyc
+.DS_Store
+.env
+venv

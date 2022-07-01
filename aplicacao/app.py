@@ -13,6 +13,9 @@ import radar
 import evolucao_generos
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
+
+server = app.server
+
 app.layout = dbc.Container(children=[
     dbc.Row([
         html.H2("Núvens de palavras", style={'text-align': 'center'}),

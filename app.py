@@ -11,6 +11,7 @@ import aplicacao.weeks_on_chart as weeks_on_chart
 import aplicacao.atributos_popularidade as atributos_popularidade
 import aplicacao.radar as radar
 import aplicacao.evolucao_generos as evolucao_generos
+import aplicacao.popularidade_generos as popularidade_generos
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
@@ -144,7 +145,15 @@ app.layout = dbc.Container(children=[
     dbc.Row([
         html.H2("Evolução do Gêneros", style={'text-align': 'center'}),
         dbc.Col(evolucao_generos.image_card, width=3), dbc.Col(evolucao_generos.graph_card, width=8)
-    ], justify="around")
+    ], justify="around"),
+    dbc.Row([
+        html.H2("Pontuação anual dos gêneros", style={'text-align': 'center'}),
+        dcc.Dropdown(id='music_genres',
+            options=popularidade_generos.music_genres, value = ['rock'],
+            multi=True
+        ),
+        dcc.Graph(id='genres_scores', figure=popularidade_generos.compare_genres([]))
+    ]),
 ])
 
 @app.callback(
@@ -184,6 +193,12 @@ def toggle_modal(n1, n2, is_open):
         return not is_open
     return is_open
 
+@app.callback(
+    Output("genres_scores", "figure"),
+    Input("music_genres", "value"),
+)
+def update_genres_scores(value):
+    return popularidade_generos.compare_genres(value)
 
 if __name__ == '__main__':
     app.run_server(debug=True)

@@ -30,21 +30,21 @@ graph_card = dbc.Card(
     [
         dbc.CardBody(
             [
-                html.H4("Gêneros 1960-2018", className="card-title", style={"text-align": "center"}),
-                dbc.Button(
-                    "Sobre os gêneros", id="popover-bottom-target", color="info"
-                ),
-                dbc.Popover(
-                    [
-                        dbc.PopoverHeader("Tudo sobre gêneros:"),
-                        dbc.PopoverBody(
-                            "Gêneros são o tipo de cada música (Wikipedia)"),
-                    ],
-                    id="popover",
-                    target="popover-bottom-target",  # needs to be the same as dbc.Button id
-                    placement="bottom",
-                    is_open=False,
-                ),
+                # html.H4("Gêneros 1960-2018", className="card-title", style={"text-align": "center"}),
+                # dbc.Button(
+                #     "Sobre os gêneros", id="popover-bottom-target", color="info"
+                # ),
+                # dbc.Popover(
+                #     [
+                #         dbc.PopoverHeader("Tudo sobre gêneros:"),
+                #         dbc.PopoverBody(
+                #             "Gêneros são o tipo de cada música (Wikipedia)"),
+                #     ],
+                #     id="popover",
+                #     target="popover-bottom-target",  # needs to be the same as dbc.Button id
+                #     placement="bottom",
+                #     is_open=False,
+                # ),
                 dcc.Graph(id='line_chart', figure={}),
 
             ]

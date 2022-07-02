@@ -212,15 +212,15 @@ app.layout = dbc.Container(children=[
 def update_radar(value):
     return radar.atribute_radar(value)
 
-@app.callback(
-    Output("popover", "is_open"),
-    [Input("popover-bottom-target", "n_clicks")],
-    [State("popover", "is_open")],
-)
-def toggle_popover(n, is_open):
-    if n:
-        return not is_open
-    return is_open
+# @app.callback(
+#     Output("popover", "is_open"),
+#     [Input("popover-bottom-target", "n_clicks")],
+#     [State("popover", "is_open")],
+# )
+# def toggle_popover(n, is_open):
+#     if n:
+#         return not is_open
+#     return is_open
 
 @app.callback(
     [Output("line_chart", "figure"),

@@ -19,6 +19,25 @@ server = app.server
 
 app.layout = dbc.Container(children=[
     dbc.Row([
+        html.H1("Visualizações de dados musicais", style={'text-align': 'center'}),
+        html.P("A música pode ser definida como uma importante expressão cultural, \
+            ela pode refletir a sociedade e seu povo no momento em que foi criada. \
+            Um exemplo claro deste fato é em relação ao período da ditadura militar \
+            brasileira, instaurada em 1964 e que durou até 1985, onde havia forte \
+            censura relacionada a arte. E, para driblar a opressão, os artistas que \
+            desejavam, por meio da música, fazer alguma crítica ao atual regime \
+            precisavam alterar as letras de modo que estas passassem uma mensagem de forma \
+            subliminar para que não fossem classificadas como ativismo político."),
+        html.P("Outro fator importante relacionado as músicas é o fator comercial. \
+            Atualmente, a indústria musical mundial movimenta bilhões de dólares, portanto \
+            criar visualizações que permitam dar uma noção, mesmo que pequena e informal, \
+            sobre o que torna uma música popular é algo bem importante, além de ser uma boa \
+            curiosidade. Nosso trabalho, portanto, consiste na criação de visualizações de dados musicais \
+            provenientes do conjunto de dados MusicOset, que contém dados relacionados a popularidade \
+            das músicas, características acústicas e líricas, e metadados, que são informações textuais \
+            e numéricas sobre as músicas.")
+    ]),
+    dbc.Row([
         html.H2("Núvens de palavras", style={'text-align': 'center'}),
         dbc.Col([
             html.H3("Títulos das músicas", style={'text-align': 'center'}),
@@ -27,50 +46,80 @@ app.layout = dbc.Container(children=[
         dbc.Col([
             html.H3("Letras das músicas", style={'text-align': 'center'}),
             html.Img(src=app.get_asset_url("lyrics.png"), style={"width": "100%"})
-        ])
+        ]),
+        html.P("Com o conhecimento das palavras mais comuns nas músicas, podem ser inferidos\
+         quais são os temas mais recorrentes no universo musical. Para esse fim, um bom tipo\
+          de visualização é uma núvem de palavras. Sendo assim, apresentamos uma núvem de\
+           palavras para títulos e outra para letras de músicas. Em particular, é notória\
+            a recorrência de temas relacionados a amor, com a ocorrencia de palavras como\
+             'love', 'heart', 'kissing', entre outras, tanto nas letras quanto nos títulos.")
     ]),
     dbc.Row([
         html.H2("Distribuições das características das músicas", style={'text-align': 'center'}),
+        html.P("Uma música pode ser caracterizada por vários atributos. No caso do Spotify, os \
+            atributos disponíveis e explorados por este trabalho incluem:"),
         dbc.Row([
             dbc.Col([
-                dcc.Graph(id='caracteristicas1', figure=distribuicoes.charts[0])
+                dcc.Graph(id='caracteristicas1', figure=distribuicoes.charts[0]),
+                html.P("Duração das músicas dada em minutos", style={'text-align': 'center'})
             ]),
             dbc.Col([
-                dcc.Graph(id='caracteristicas2', figure=distribuicoes.charts[1])
+                dcc.Graph(id='caracteristicas2', figure=distribuicoes.charts[1]),
+                html.P("Medida de quão acústica é a música, sendo esta uma \
+                    medida inversamente proporcional ao quão eletrônica ela seria", style={'text-align': 'center'})
             ])
         ]),
         dbc.Row([
             dbc.Col([
-                dcc.Graph(id='caracteristicas3', figure=distribuicoes.charts[2])
+                dcc.Graph(id='caracteristicas3', figure=distribuicoes.charts[2]),
+                html.P("O quão dançável é considerada a faixa", style={'text-align': 'center'})
             ]),
             dbc.Col([
-                dcc.Graph(id='caracteristicas4', figure=distribuicoes.charts[3])
+                dcc.Graph(id='caracteristicas4', figure=distribuicoes.charts[3]),
+                html.P("Atributo relacionado à percepção do quão energética é a música, \
+                    geralmente relacionado a alguns tipos de ritmo considerados mais animados", style={'text-align': 'center'})
             ])
         ]),
         dbc.Row([
             dbc.Col([
-                dcc.Graph(id='caracteristicas5', figure=distribuicoes.charts[4])
+                dcc.Graph(id='caracteristicas5', figure=distribuicoes.charts[4]),
+                html.P("O quão instrumental é a faixa (em \
+                    detrimento da presença de mais vocais, por exemplo)", style={'text-align': 'center'})
             ]),
             dbc.Col([
-                dcc.Graph(id='caracteristicas6', figure=distribuicoes.charts[5])
+                dcc.Graph(id='caracteristicas6', figure=distribuicoes.charts[5]),
+                html.P("Quantifica a sensação passada por uma performance ao vivo", style={'text-align': 'center'})
             ])
         ]),
         dbc.Row([
             dbc.Col([
-                dcc.Graph(id='caracteristicas7', figure=distribuicoes.charts[6])
+                dcc.Graph(id='caracteristicas7', figure=distribuicoes.charts[6]),
+                html.P("Quantifica a percepção subjetiva de quão \
+                    barulhenta é a música, inversamente proporcional à percepção de silêncio, \
+                    medida em decibéis (dB)", style={'text-align': 'center'})
             ]),
             dbc.Col([
-                dcc.Graph(id='caracteristicas8', figure=distribuicoes.charts[7])
+                dcc.Graph(id='caracteristicas8', figure=distribuicoes.charts[7]),
+                html.P("Quanto de fala (trechos não cantados) a música contém", style={'text-align': 'center'})
             ])
         ]),
         dbc.Row([
             dbc.Col([
-                dcc.Graph(id='caracteristicas9', figure=distribuicoes.charts[8])
+                dcc.Graph(id='caracteristicas9', figure=distribuicoes.charts[8]),
+                html.P("Descreve o quão positiva é considerada a faixa", style={'text-align': 'center'})
             ]),
             dbc.Col([
-                dcc.Graph(id='caracteristicas10', figure=distribuicoes.charts[9])
+                dcc.Graph(id='caracteristicas10', figure=distribuicoes.charts[9]),
+                html.P("Dado em batidas por minuto, relacionado à velocidade rítmica da música", style={'text-align': 'center'})
             ])
         ]),
+        html.P("A análise das distribuições desses atributos permite uma série de inferências a respeito \
+            das propriedades musicais mais comuns. Alguns atributos tendem a ser bem concentrados em \
+            valores comuns. Isso pode ser observado nos atributos 'speechiness' e 'duration_m', por exemplo, \
+            de forma que existem poucas músicas de duração superior a 5 minutos e poucas músicas com um \
+            grau de speechiness muito elevado. Por outro lado, alguns atributos possuem faixas mais \
+            balanceadas entre as músicas, como é o caso de 'valence', por exemplo. Além disso, no caso \
+            geral, boa parte dos atributos aparentam se caracterizar por uma distribuição normal.")
     ]),
     dbc.Row([
         html.H2("Distribuição dos álbuns, artistas e músicas populares versus o total", style={'text-align': 'center'}),
@@ -96,14 +145,14 @@ app.layout = dbc.Container(children=[
                 html.P("A característica valência mede a positividade da música, a\
                     'danceabilidade' mede o quão dançante uma música é, já a energia representa uma medida perceptiva de intensidade e atividade de uma música.\
                     Todas essas caracterpisticas estão em um intervalo de 0 a 1. A característica tempo é relacionada ao ritmo da música, ela é medida em batidas\
-                    por minuto.", style={'text-align': 'center'}),
+                    por minuto."),
                 dcc.Graph(id='correlacao1', figure=correlacao.fig_1)
             ]),
             dbc.Row([
                 html.H3("Correlações entre atributos relacionados a alguma coisa (arrumar palavra boa)", style={'text-align': 'center'}),
                 html.P("A característica 'instrumentalness' prevê se uma música não contém vocais, a característica 'acousticness' é uma medida de confiança se a música\
                     é acústica e 'speechiness' detecta a presença de palavras faladas em uma música. Todas essas caracterpisticas estão em um intervalo de 0 a 1. \
-                    Já a característica 'loudness' é o volume geral de uma faixa em decibéis", style={'text-align': 'center'}),
+                    Já a característica 'loudness' é o volume geral de uma faixa em decibéis"),
                 dcc.Graph(id='correlacao2', figure=correlacao.fig_2)
             ])
     ]),

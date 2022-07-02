@@ -14,8 +14,8 @@ image_card = dbc.Card(
     [
         dbc.CardBody(
             [
-                html.H4("Quantity of genres since 1960s", className="card-title"),
-                html.H6("Choose Genres:", className="card-text"),
+                html.H4("Quantidade de gêneros desde 1960", className="card-title"),
+                html.H6("Gêneros escolhidos:", className="card-text"),
                 html.Div(id="the_alert", children=[]),
                 dcc.Dropdown(id='genre_chosen', options=[{'label': d, "value": d} for d in df["genre"].unique()],
                              value=["dance pop", "contemporary country", "funk"], multi=True, style={"color": "#000000"}),
@@ -30,15 +30,15 @@ graph_card = dbc.Card(
     [
         dbc.CardBody(
             [
-                html.H4("Genres 1960-2018", className="card-title", style={"text-align": "center"}),
+                html.H4("Gêneros 1960-2018", className="card-title", style={"text-align": "center"}),
                 dbc.Button(
-                    "About Genres", id="popover-bottom-target", color="info"
+                    "Sobre os gêneros", id="popover-bottom-target", color="info"
                 ),
                 dbc.Popover(
                     [
-                        dbc.PopoverHeader("All About Genres:"),
+                        dbc.PopoverHeader("Tudo sobre gêneros:"),
                         dbc.PopoverBody(
-                            "Genres are about the type of each music (Wikipedia)"),
+                            "Gêneros são o tipo de cada música (Wikipedia)"),
                     ],
                     id="popover",
                     target="popover-bottom-target",  # needs to be the same as dbc.Button id

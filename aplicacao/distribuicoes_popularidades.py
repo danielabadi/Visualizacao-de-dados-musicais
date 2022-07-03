@@ -35,12 +35,12 @@ fig = imports.make_subplots(
 )
 
 fig.add_trace(
-    imports.go.Bar(name='Total de albums', x=album_by_year['year'], y=album_pop_by_year['count_total'], marker_color="blue"),
+    imports.go.Bar(name='Total de albums', x=album_by_year['year'], y=album_pop_by_year['count_total'], marker_color="#009E7F"),
     row = 1, col = 1
 )
 
 fig.add_trace(
-    imports.go.Bar(name='Albums populares', x=album_by_year['year'], y=album_pop_by_year['count'], marker_color="red"),
+    imports.go.Bar(name='Albums populares', x=album_by_year['year'], y=album_pop_by_year['count'], marker_color="#FA4300"),
     row = 1, col = 1
 )
 
@@ -58,12 +58,12 @@ fig = imports.make_subplots(
 )
 
 fig.add_trace(
-    imports.go.Bar(name='Total de artistas', x=artist_by_year['year'], y=artist_pop_by_year['count_total'], marker_color="blue"),
+    imports.go.Bar(name='Total de artistas', x=artist_by_year['year'], y=artist_pop_by_year['count_total'], marker_color="#009E7F"),
     row = 1, col = 1
 )
 
 fig.add_trace(
-    imports.go.Bar(name='Artistas populares', x=artist_by_year['year'], y=artist_pop_by_year['count'], marker_color="red"),
+    imports.go.Bar(name='Artistas populares', x=artist_by_year['year'], y=artist_pop_by_year['count'], marker_color="#FA4300"),
     row = 1, col = 1
 )
 
@@ -82,12 +82,12 @@ fig = imports.make_subplots(
 )
 
 fig.add_trace(
-    imports.go.Bar(name='Total de músicas', x=song_by_year['year'], y=song_pop_by_year['count_total'], marker_color="blue"),
+    imports.go.Bar(name='Total de músicas', x=song_by_year['year'], y=song_pop_by_year['count_total'], marker_color="#009E7F"),
     row = 1, col = 1
 )
 
 fig.add_trace(
-    imports.go.Bar(name='Músicas populares', x=song_by_year['year'], y=song_pop_by_year['count'], marker_color="red"),
+    imports.go.Bar(name='Músicas populares', x=song_by_year['year'], y=song_pop_by_year['count'], marker_color="#FA4300"),
     row = 1, col = 1
 )
 

@@ -22,6 +22,8 @@ server = app.server
 app.layout = dbc.Container(children=[
     dbc.Row([
         html.H1("Visualizações de Dados Musicais", style={'text-align': 'center'}),
+        html.P("André Ribeiro, Caio Campos, Daniel Abadi, Igor Castejon e \
+            Pedro Geovanni", style={'text-align': 'center', 'font-weight': 'bold'}),
         html.P("A música pode ser definida como uma importante expressão cultural, \
             ela pode refletir a sociedade e seu povo no momento em que foi criada. \
             Um exemplo claro deste fato é em relação ao período da ditadura militar \

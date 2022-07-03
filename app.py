@@ -34,13 +34,14 @@ app.layout = dbc.Container(children=[
             Atualmente, a indústria musical mundial movimenta bilhões de dólares, portanto \
             criar visualizações que permitam dar uma noção, mesmo que pequena e informal, \
             sobre o que torna uma música popular é algo bem importante, além de ser uma boa \
-            curiosidade. Nosso trabalho, portanto, consiste na criação de visualizações de dados musicais \
-            provenientes do conjunto de dados MusicOset, que contém dados relacionados a popularidade \
-            das músicas, características acústicas e líricas, e metadados, que são informações textuais \
-            e numéricas sobre as músicas.")
+            curiosidade. Nosso trabalho, portanto, consiste na criação de visualizações de \
+            dados musicais provenientes do conjunto de dados MusicOset, que contém dados \
+            relacionados a popularidade das músicas, características acústicas e líricas, \
+            e metadados, que são informações textuais e numéricas sobre as músicas, com \
+            foco em explorar a seguinte pergunta 'Como determinar o que torna uma música popular?'.")
     ]),
     dbc.Row([
-        html.H2("Núvens de palavras", style={'text-align': 'center'}),
+        html.H2("Nuvens de palavras", style={'text-align': 'center'}),
         dbc.Col([
             html.H3("Títulos das músicas", style={'text-align': 'center'}),
             html.Img(src=app.get_asset_url("titles.png"), style={"width": "100%"}),
@@ -51,7 +52,7 @@ app.layout = dbc.Container(children=[
         ]),
         html.P("Com o conhecimento das palavras mais comuns nas músicas, podem ser inferidos\
          quais são os temas mais recorrentes no universo musical. Para esse fim, um bom tipo\
-          de visualização é uma núvem de palavras. Sendo assim, apresentamos uma núvem de\
+          de visualização é uma nuvem de palavras. Sendo assim, apresentamos uma nuvem de\
            palavras para títulos e outra para letras de músicas. Em particular, é notória\
             a recorrência de temas relacionados a amor, com a ocorrencia de palavras como\
              'love', 'heart', 'kissing', entre outras, tanto nas letras quanto nos títulos.")
@@ -186,7 +187,11 @@ app.layout = dbc.Container(children=[
     ]),
     dbc.Row([
             html.H2("Relação entre o número de semanas que a música permaneceu na Billboard 100, sua posição máxima no ranking e sua popularidade", style={'text-align': 'center'}),
-            dcc.Graph(id='weeks_on_chart_peak_position', figure=weeks_on_chart.weeks_on_chart_peak_position)
+            dcc.Graph(id='weeks_on_chart_peak_position', figure=weeks_on_chart.weeks_on_chart_peak_position),
+            html.P("Ao relacionar o tempo de semanas que uma musica permaneceu no chart e seu ranking máximo, \
+                observando também sua popularidade, pode ser observado que musicas que alcançam rankings \
+                elevados tendem a ficar um menor tempo no chart, enquanto as com ranks mais baixos ficam \
+                mais tempo e são até mais populares.")
     ]),
     dbc.Row([
             html.H2("Atributos médios por popularidade", style={'text-align': 'center'}),
@@ -215,6 +220,10 @@ app.layout = dbc.Container(children=[
     dbc.Row([
         html.H2("Atributos médios entre faixas de popularidade", style={'text-align': 'center'}),
         dcc.Graph(id='radar_medio', figure=radar_medio.fig),
+        html.P("Um radar plot também pode ser utilizado para observar os atributos médios por faixa de \
+            popularidade. Apesar de ser uma visualização simples e que trabalha com a média, é possível \
+            observar alguns padrões de popularidade, por exemplo o fato de músicas mais acústicas no \
+            geral não serem muito populares. O mesmo pode ser dito para músicas muito instrumentais.")
     ]),
     dbc.Row([
         html.H2("Gráfico de coordenadas paralelas para os atributos musicais", style={'text-align': 'center'}),

@@ -200,10 +200,6 @@ app.layout = dbc.Container(children=[
                 influenciam na maior popularidade no caso geral.")
     ]),
     dbc.Row([
-        html.H2("Atributos médios entre faixas de popularidade", style={'text-align': 'center'}),
-        dcc.Graph(id='radar_medio', figure=radar_medio.fig),
-    ]),
-    dbc.Row([
         html.H2("Comparação de atributos entre músicas", style={'text-align': 'center'}),
         html.H6("Músicas escolhidas:"),
         dcc.Dropdown(id='musics',
@@ -212,13 +208,23 @@ app.layout = dbc.Container(children=[
         ),
         dcc.Graph(id='radar', figure=radar.atribute_radar([])),
         html.P("O objetivo deste gráfico é permitir a comparação das características musicais entre duas ou \
-            mais músicas, por meio de um Radar Plot. Esse tipo de gráfico foi esolhido com a intenção de ser \
+            mais músicas, por meio de um Radar Plot. Esse tipo de gráfico foi escolhido com a intenção de ser \
             parecido com um radar de atributos, iguais aqueles que vemos em jogos, onde cada personagem possui \
             características próprias.")
     ]),
     dbc.Row([
+        html.H2("Atributos médios entre faixas de popularidade", style={'text-align': 'center'}),
+        dcc.Graph(id='radar_medio', figure=radar_medio.fig),
+    ]),
+    dbc.Row([
         html.H2("Gráfico de coordenadas paralelas para os atributos musicais", style={'text-align': 'center'}),
         dcc.Graph(id='coordenadas_paralelas', figure=coordenadas_paralelas.fig),
+        html.P("Uma outra forma de comparar atributos no caso geral e relacioná-los à popularidade é através de um gráfico \
+            de coordenadas paralelas. Através do gráfico de coordenadas paralelas exibido acima, é possível observar que \
+            atributos como loudness e instrumentalness aparentam possuir faixas específicas que concentram as músicas mais \
+            populares, ou seja, músicas que fogem muito da faixa média tendem a ser menos populares. Isso também pode ser \
+            observado para a duração, que também concentra boa parte das músicas em uma faixa específica como já mencionado \
+            anteriormente. É também possível observar que no caso da duração, músicas que fogem a essa faixa geralmente não são muito populares."),
     ]),
     dbc.Row([
         html.H2("Distribuição de artistas pelo mundo", style={'text-align': 'center'}),
@@ -252,7 +258,11 @@ app.layout = dbc.Container(children=[
             options=popularidade_generos.music_genres, value = ['rock'],
             multi=True
         ),
-        dcc.Graph(id='genres_scores', figure=popularidade_generos.compare_genres([]))
+        dcc.Graph(id='genres_scores', figure=popularidade_generos.compare_genres([])),
+        html.P("A Pontuação anual é uma das formas propostas para avaliar a popularidade anual de determinado álbum, artistas ou música, e é uma \
+            combinação entre a popularidade máxima alcançada e as semanas que ele ficou nas paradas de sucesso. O objetivo deste gráfico é permitir \
+            a comparação entre a pontuação anual de artistas de diferentes gêneros musicais, e observar possíveis padrões na popularidade de determinados \
+            gêneros, como anos de alta ou baixa na popularidade.")
     ]),
 ])
 

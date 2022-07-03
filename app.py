@@ -10,8 +10,10 @@ import aplicacao.correlacao as correlacao
 import aplicacao.weeks_on_chart as weeks_on_chart
 import aplicacao.atributos_popularidade as atributos_popularidade
 import aplicacao.radar as radar
+import aplicacao.radar_medio as radar_medio
 import aplicacao.evolucao_generos as evolucao_generos
 import aplicacao.popularidade_generos as popularidade_generos
+import aplicacao.coordenadas_paralelas as coordenadas_paralelas
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
@@ -198,6 +200,10 @@ app.layout = dbc.Container(children=[
                 influenciam na maior popularidade no caso geral.")
     ]),
     dbc.Row([
+        html.H2("Atributos médios entre faixas de popularidade", style={'text-align': 'center'}),
+        dcc.Graph(id='radar_medio', figure=radar_medio.fig),
+    ]),
+    dbc.Row([
         html.H2("Comparação de atributos entre músicas", style={'text-align': 'center'}),
         html.H6("Músicas escolhidas:"),
         dcc.Dropdown(id='musics',
@@ -209,6 +215,10 @@ app.layout = dbc.Container(children=[
             mais músicas, por meio de um Radar Plot. Esse tipo de gráfico foi esolhido com a intenção de ser \
             parecido com um radar de atributos, iguais aqueles que vemos em jogos, onde cada personagem possui \
             características próprias.")
+    ]),
+    dbc.Row([
+        html.H2("Gráfico de coordenadas paralelas para os atributos musicais", style={'text-align': 'center'}),
+        dcc.Graph(id='coordenadas_paralelas', figure=coordenadas_paralelas.fig),
     ]),
     dbc.Row([
         html.H2("Distribuição de artistas pelo mundo", style={'text-align': 'center'}),

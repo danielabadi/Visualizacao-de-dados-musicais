@@ -21,7 +21,7 @@ server = app.server
 
 app.layout = dbc.Container(children=[
     dbc.Row([
-        html.H1("Visualizações de dados musicais", style={'text-align': 'center'}),
+        html.H1("Visualizações de Dados Musicais", style={'text-align': 'center'}),
         html.P("A música pode ser definida como uma importante expressão cultural, \
             ela pode refletir a sociedade e seu povo no momento em que foi criada. \
             Um exemplo claro deste fato é em relação ao período da ditadura militar \
@@ -239,8 +239,11 @@ app.layout = dbc.Container(children=[
             apenas um país do continente africano possui dados registrados.")
     ]),
     dbc.Row([
-        html.H2("Evolução do Gêneros", style={'text-align': 'center'}),
-        dbc.Col(evolucao_generos.image_card, width=3), dbc.Col(evolucao_generos.graph_card, width=8)
+        html.H2("Evolução dos Gêneros", style={'text-align': 'center'}),
+
+        dbc.Col(evolucao_generos.image_card, width=3), dbc.Col(evolucao_generos.graph_card, width=8),
+
+        html.P("Hello boys")
     ], justify="around"),
     dbc.Row([
         html.H2("Pontuação anual dos gêneros", style={'text-align': 'center'}),
@@ -277,12 +280,12 @@ def update_radar(value):
 )
 def update_graph_card(genres):
     if len(genres) == 0:
-        return no_update, alert
+        return no_update, evolucao_generos.alert
     else:
-        df_filtered = evolucao_generos.df[evolucao_generos.df["genre"].isin(genres)]
-        df_filtered = df_filtered.groupby(["ano", "genre"])[['num']].sum().reset_index()
-        fig = imports.px.line(df_filtered, x="ano", y="num", color="genre",
-                      labels={"ano": "Year", "num": "# Genres"}).update_traces(mode='lines+markers')
+        df_filtered = evolucao_generos.df[evolucao_generos.df["Gêneros"].isin(genres)]
+        df_filtered = df_filtered.groupby(["ano", "Gêneros"])[['num']].sum().reset_index()
+        fig = imports.px.line(df_filtered, x="ano", y="num", color="Gêneros",
+                      labels={"ano": "Year", "num": "# Músicas"}).update_traces(mode='lines+markers')
         return fig, no_update
 
 def toggle_modal(n1, n2, is_open):

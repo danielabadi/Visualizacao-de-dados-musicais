@@ -7,13 +7,13 @@ df = imports.df_metadata_genres
 
 # app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-#alert = dbc.Alert("Please choose Genres from dropdown to avoid further disappointment!", color="danger",
-#                  dismissable=True),  # use dismissable or duration=5000 for alert to close in x milliseconds
+alert = dbc.Alert("Por favor selecione gêneros do dropdown para sua visualização.", color="danger",
+                  dismissable=True),  # use dismissable or duration=5000 for alert to close in x milliseconds
 
 image_card = dbc.Row([
                 html.H6("Gêneros escolhidos:", className="card-text"),
                 html.Div(id="the_alert", children=[]),
-                dcc.Dropdown(id='genre_chosen', options=[{'label': d, "value": d} for d in df["genre"].unique()],
+                dcc.Dropdown(id='genre_chosen', options=[{'label': d, "value": d} for d in df["Gêneros"].unique()],
                              value=["dance pop", "contemporary country", "funk"], multi=True, style={"color": "#000000"})
             ]),
 

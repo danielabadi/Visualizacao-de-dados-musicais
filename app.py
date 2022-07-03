@@ -123,7 +123,11 @@ app.layout = dbc.Container(children=[
     ]),
     dbc.Row([
         html.H2("Distribuição dos álbuns, artistas e músicas populares versus o total", style={'text-align': 'center'}),
-
+        html.P("A partir de séries temporais, apresentamos o número de músicas, artistas e álbuns lançados a cada ano. \
+            Além disso, combinamos essa série com outra que demonstra quantos deles são classificados como populares. \
+            Essas visualizações permitem observar uma tendência de crescimento do número de artistas e de álbuns, \
+            com uma parcela de popularidade estável no decorrer dos anos. Por outro lado, o número de músicas \
+            registradas na base tem caído ao longo dos anos."),
         dbc.Row([
             html.H3("Álbuns", style={'text-align': 'center'}),
             dcc.Graph(id='albumsPopularidade', figure=distribuicoes_popularidades.charts[0])
@@ -143,26 +147,40 @@ app.layout = dbc.Container(children=[
         dbc.Row([
                 html.H3("Correlações entre atributos relacionados à expressividade das músicas", style={'text-align': 'center'}),
                 dcc.Graph(id='correlacao1', figure=correlacao.fig_1),
-                html.P("A característica valência mede a positividade da música, a\
+                html.P("Como dito anteriormente nas distribuíções, a característica valência mede a positividade da música, a\
                     'danceabilidade' mede o quão dançante uma música é, já a energia representa uma medida perceptiva de intensidade e atividade de uma música.\
-                    Todas essas caracterpisticas estão em um intervalo de 0 a 1. A característica tempo é relacionada ao ritmo da música, ela é medida em batidas\
-                    por minuto."),
+                    Todas essas características estão em um intervalo de 0 a 1. A característica tempo é relacionada ao ritmo da música, ela é medida em batidas\
+                    por minuto. É interessante notar que há uma fraca correlação entre algumas variáveis, \
+                    porém não conseguimos notar nenhuma combinação que resulte em um número maior de músicas populares."),
             ]),
             dbc.Row([
-                html.H3("Correlações entre atributos relacionados a alguma coisa (arrumar palavra boa)", style={'text-align': 'center'}),
+                html.H3("Correlações entre atributos relacionados à características auditivas", style={'text-align': 'center'}),
                 dcc.Graph(id='correlacao2', figure=correlacao.fig_2),
-                html.P("A característica 'instrumentalness' prevê se uma música não contém vocais, a característica 'acousticness' é uma medida de confiança se a música\
-                    é acústica e 'speechiness' detecta a presença de palavras faladas em uma música. Todas essas caracterpisticas estão em um intervalo de 0 a 1. \
-                    Já a característica 'loudness' é o volume geral de uma faixa em decibéis"),
+                html.P("Como já mencionado anteriormente, a característica 'instrumentalness' prevê se uma música não contém vocais, \
+                    a característica 'acousticness' é uma medida de confiança se a música é acústica e 'speechiness' \
+                    detecta a presença de palavras faladas em uma música. Todas essas características estão em um intervalo de 0 a \
+                    1. Já a característica 'loudness' é o volume geral de uma faixa em decibéis (dB). Nesse gráfico é \
+                    possível perceber alguns padrões interessantes, como a correlação entre 'loudness' e 'instrumentalness'. \
+                    Mas, novamente, não é possível identificar uma combinação que produza músicas mais populares."),
             ])
     ]),
     dbc.Row([
             html.H2("Distribuições temporais do lançamento das músicas", style={'text-align': 'center'}),
-            dcc.Graph(id='datas_lancamentos', figure=datas_lancamentos.fig)
+            dcc.Graph(id='datas_lancamentos', figure=datas_lancamentos.fig),
+            html.P("Tentamos também visualizar se existem épocas do ano que concentram lançamentos de \
+                músicas. Para isso, utilizamos um mapa de calor. No entanto, nos dados utilizados, mesmo \
+                com precisão diária, a maioria das músicas ficam como lançadas no dia 1 de Janeiro ou no \
+                dia 1 de cada mês, indicando uma possível inconsistência na base de dados. Para melhor \
+                visualização, colocamos o dia 1 de Janeiro como 0 músicas lançadas. Pode-se observar \
+                que o número de lançamentos no período natalino e de final de ano é baixo.")
     ]),
     dbc.Row([
             html.H2("Distribuição de semanas que as músicas permanecem na Billboard 100", style={'text-align': 'center'}),
-            dcc.Graph(id='weeks_on_chart', figure=weeks_on_chart.weeks_on_chart)
+            dcc.Graph(id='weeks_on_chart', figure=weeks_on_chart.weeks_on_chart),
+            html.P("Na Billboard 100, músicas são ranqueadas semanalmente a partir de métricas como vendas de discos, \
+                número de reproduções, etc. Não é comum que uma música fique muito tempo no ranking, entretanto \
+                existem casos em que isso ocorreu, chegando a mais de 80 semanas. Essa música em específico \
+                é a Radioactive, da banda Imagine Dragons.")
     ]),
     dbc.Row([
             html.H2("Relação entre o número de semanas que a música permaneceu na Billboard 100, sua posição máxima no ranking e sua popularidade", style={'text-align': 'center'}),
@@ -179,7 +197,11 @@ app.layout = dbc.Container(children=[
             options=imports.df_metadata_songs['song_name'], value = ['thank u, next', 'Sunflower - Spider-Man: Into the Spider-Verse'],
             multi=True
         ),
-        dcc.Graph(id='radar', figure=radar.atribute_radar([]))
+        dcc.Graph(id='radar', figure=radar.atribute_radar([])),
+        html.P("O objetivo deste gráfico é permitir a comparação das características musicais entre duas ou \
+            mais músicas, por meio de um Radar Plot. Esse tipo de gráfico foi esolhido com a intenção de ser \
+            parecido com um radar de atributos, iguais aqueles que vemos em jogos, onde cada personagem possui \
+            características próprias.")
     ]),
     dbc.Row([
         html.H2("Distribuição de artistas pelo mundo", style={'text-align': 'center'}),
@@ -191,7 +213,12 @@ app.layout = dbc.Container(children=[
                     style={"width": "100%", "min-height": "640px", "background":"url(assets/loading.gif) center center no-repeat"},
                 )
             ]
-        )
+        ),
+        html.P("A ideia por trás deste gráfico é mostrar a distribuição de artistas/bandas ao redor ao longo \
+            dos anos. É interessante notar que, nessa base em específico, há um grande desbalanceamento \
+            em relação a quantidade de países, onde o país Estados Unidos possui quase metade do número total \
+            de artistas/bandas. Outro ponto importante mostrado aqui é a desigualdade relacionada à globalização, \
+            visto que apenas um país do continente africano possui dados registrados.")
     ]),
     dbc.Row([
         html.H2("Evolução do Gêneros", style={'text-align': 'center'}),

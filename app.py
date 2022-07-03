@@ -188,7 +188,14 @@ app.layout = dbc.Container(children=[
     ]),
     dbc.Row([
             html.H2("Atributos médios por popularidade", style={'text-align': 'center'}),
-            dcc.Graph(id='atributos_popularidade', figure=atributos_popularidade.fig)
+            dcc.Graph(id='atributos_popularidade', figure=atributos_popularidade.fig),
+            html.P("Outra forma de tentar mensurar quais atributos afetam a popularidade de uma música \
+                é através de uma seŕie temporal. Na visualização acima, o eixo X cresce de acordo com \
+                a popularidade e o eixo Y representa os valores médios dos atributos para uma dada \
+                popularidade. Nesse caso, é possível observar maior variância das séries de atributos \
+                para músicas mais populares, também influenciada pela pouca amostragem nessa faixa. A \
+                alta variância indica também não ser trivial definir objetivamente quais atributos \
+                influenciam na maior popularidade no caso geral.")
     ]),
     dbc.Row([
         html.H2("Comparação de atributos entre músicas", style={'text-align': 'center'}),
@@ -214,11 +221,12 @@ app.layout = dbc.Container(children=[
                 )
             ]
         ),
-        html.P("A ideia por trás deste gráfico é mostrar a distribuição de artistas/bandas ao redor ao longo \
-            dos anos. É interessante notar que, nessa base em específico, há um grande desbalanceamento \
-            em relação a quantidade de países, onde o país Estados Unidos possui quase metade do número total \
-            de artistas/bandas. Outro ponto importante mostrado aqui é a desigualdade relacionada à globalização, \
-            visto que apenas um país do continente africano possui dados registrados.")
+        html.P("A ideia por trás deste gráfico é mostrar a distribuição de artistas/bandas ao redor do \
+            mundo no decorrer dos anos (de forma cumulativa). É interessante notar que, nessa base em \
+            específico, há um grande desbalanceamento em relação aos países representados, de forma que \
+            o país Estados Unidos possui quase metade do número total de artistas/bandas. Outro ponto \
+            importante que pode ser observado é a desigualdade relacionada à globalização, visto que \
+            apenas um país do continente africano possui dados registrados.")
     ]),
     dbc.Row([
         html.H2("Evolução do Gêneros", style={'text-align': 'center'}),

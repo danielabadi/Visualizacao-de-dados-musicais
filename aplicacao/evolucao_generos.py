@@ -7,51 +7,20 @@ df = imports.df_metadata_genres
 
 # app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-alert = dbc.Alert("Please choose Genres from dropdown to avoid further disappointment!", color="danger",
-                  dismissable=True),  # use dismissable or duration=5000 for alert to close in x milliseconds
+#alert = dbc.Alert("Please choose Genres from dropdown to avoid further disappointment!", color="danger",
+#                  dismissable=True),  # use dismissable or duration=5000 for alert to close in x milliseconds
 
-image_card = dbc.Card(
-    [
-        dbc.CardBody(
-            [
-                html.H4("Quantidade de gêneros desde 1960", className="card-title"),
+image_card = dbc.Row([
                 html.H6("Gêneros escolhidos:", className="card-text"),
                 html.Div(id="the_alert", children=[]),
                 dcc.Dropdown(id='genre_chosen', options=[{'label': d, "value": d} for d in df["genre"].unique()],
-                             value=["dance pop", "contemporary country", "funk"], multi=True, style={"color": "#000000"}),
-                html.Hr()
-            ]
-        ),
-    ],
-    color="light",
-)
+                             value=["dance pop", "contemporary country", "funk"], multi=True, style={"color": "#000000"})
+            ]),
 
-graph_card = dbc.Card(
-    [
-        dbc.CardBody(
-            [
-                # html.H4("Gêneros 1960-2018", className="card-title", style={"text-align": "center"}),
-                # dbc.Button(
-                #     "Sobre os gêneros", id="popover-bottom-target", color="info"
-                # ),
-                # dbc.Popover(
-                #     [
-                #         dbc.PopoverHeader("Tudo sobre gêneros:"),
-                #         dbc.PopoverBody(
-                #             "Gêneros são o tipo de cada música (Wikipedia)"),
-                #     ],
-                #     id="popover",
-                #     target="popover-bottom-target",  # needs to be the same as dbc.Button id
-                #     placement="bottom",
-                #     is_open=False,
-                # ),
-                dcc.Graph(id='line_chart', figure={}),
+graph_card = dbc.Row([
+                dcc.Graph(id='line_chart', figure={})
 
-            ]
-        ),
-    ],
-    color="light",
-)
+            ])
 
 # *********************************************************************************************************
 # app.layout = html.Div([

@@ -173,6 +173,8 @@ app.layout = dbc.Container(children=[
             dcc.Graph(id='atributos_popularidade', figure=atributos_popularidade.fig)
     ]),
     dbc.Row([
+        html.H2("Comparação de atributos entre músicas", style={'text-align': 'center'}),
+        html.H6("Músicas escolhidas:"),
         dcc.Dropdown(id='musics',
             options=imports.df_metadata_songs['song_name'], value = ['thank u, next', 'Sunflower - Spider-Man: Into the Spider-Verse'],
             multi=True
@@ -197,6 +199,7 @@ app.layout = dbc.Container(children=[
     ], justify="around"),
     dbc.Row([
         html.H2("Pontuação anual dos gêneros", style={'text-align': 'center'}),
+        html.H6("Gêneros escolhidos:"),
         dcc.Dropdown(id='music_genres',
             options=popularidade_generos.music_genres, value = ['rock'],
             multi=True

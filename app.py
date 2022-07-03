@@ -262,7 +262,8 @@ app.layout = dbc.Container(children=[
         html.P("A Pontuação anual é uma das formas propostas para avaliar a popularidade anual de determinado álbum, artistas ou música, e é uma \
             combinação entre a popularidade máxima alcançada e as semanas que ele ficou nas paradas de sucesso. O objetivo deste gráfico é permitir \
             a comparação entre a pontuação anual de artistas de diferentes gêneros musicais, e observar possíveis padrões na popularidade de determinados \
-            gêneros, como anos de alta ou baixa na popularidade.")
+            gêneros, como anos de alta ou baixa na popularidade. É possível observar, por exemplo, que para o gênero rock, a popularidade diminuiu ao \
+            longo dos anos, e na última década sua popularidade voltou a crescer.")
     ]),
 ])
 

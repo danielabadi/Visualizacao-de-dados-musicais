@@ -276,6 +276,15 @@ app.layout = dbc.Container(children=[
             gêneros, como anos de alta ou baixa na popularidade. É possível observar, por exemplo, que para o gênero rock, a popularidade diminuiu ao \
             longo dos anos, e na última década sua popularidade voltou a crescer.")
     ]),
+    dbc.Row([
+        html.H2("Conclusão", style={'text-align': 'center'}),
+        html.P("A partir da análise das correlações entre atributos, foi possível perceber alguns padrões interessantes, como a correlação \
+            entre 'loudness' e 'instrumentalness', porém não conseguimos notar nenhuma combinação que resulte em um número maior de músicas populares."),
+        html.P("Pôde ser observado que musicas que alcançam rankings elevados tendem a ficar um menor tempo no chart, enquanto as com ranks mais baixos \
+            tendem a ficar mais tempo e são até mais populares no geral."),
+        html.P("Músicas populares costumam ter baixa instrumentalidade e acusticidade, e existe uma grande variância entre os atributos à medida \
+            que a popularidade aumenta. Também foi possível observar que músicas populares não são muito longas em duração."),
+    ]),
 ])
 
 @app.callback(
